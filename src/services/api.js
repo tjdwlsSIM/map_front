@@ -1,11 +1,20 @@
-const BASE_URL = 'https://manghanmap-production.up.railway.app/api/v1'
+// 프로덕션은 항상 동일 출처 `/api` → Vercel rewrites(vercel.json)가 Railway로 전달(CORS 회피).
+// 로컬 개발은 기본 `/api` → vite.config.js proxy. 필요 시에만 .env에서 직접 URL 지정.
+const BASE_URL =
+  import.meta.env.PROD
+    ? '/api'
+    : import.meta.env.VITE_API_BASE_URL || '/api'
 
 async function request(path, options = {}) {
+  const headers = {
+    ...(options.body && !(options.body instanceof FormData)
+      ? { 'Content-Type': 'application/json' }
+      : {}),
+    ...(options.headers || {}),
+  }
+
   const response = await fetch(`${BASE_URL}${path}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(options.headers || {}),
-    },
+    headers,
     ...options,
   })
 

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://manghanmap-production.up.railway.app/api/v1/:path*"
+    }
+  ]
+}
