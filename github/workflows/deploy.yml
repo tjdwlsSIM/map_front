@@ -3,7 +3,7 @@ name: Build & Deploy to https://github.com/tjdwlsSIM/map_front.git
 on:
   push:
     branches:
-      - prod main
+      - main
   workflow_dispatch:
 
 jobs:
