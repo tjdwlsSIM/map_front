@@ -4,6 +4,7 @@ import iconImage from './assets/icon.png'
 import mapImage from './assets/map.png'
 import { getStoredSchool, getStoredSchoolId, regionMarkers } from './appData'
 import { getDoomRanking } from './services/api'
+import { getSchoolLogoSrc } from './schoolLogoMap'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
 
 export default function MainPage() {
@@ -90,6 +91,11 @@ export default function MainPage() {
                         <span className={`ranking-item__medal ranking-item__medal--${index + 1}`}>
                           {index + 1}
                         </span>
+                        <img
+                          src={getSchoolLogoSrc(school.universityName) || iconImage}
+                          alt=""
+                          className="school-logo school-logo--sm"
+                        />
                         <span className="ranking-item__name">{school.universityName}</span>
                       </button>
                     ))}

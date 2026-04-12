@@ -20,7 +20,7 @@ export default function ContributionPage() {
   const [sleepHours, setSleepHours] = useState(0)
   const [isCramming, setIsCramming] = useState(false)
   const [fearScore, setFearScore] = useState(0)
-  const [quote, setQuote] = useState('')
+  const [moodText, setMoodText] = useState('')
 
   useEffect(() => {
     let isMounted = true
@@ -93,15 +93,8 @@ export default function ContributionPage() {
         sleepHours: Number(sleepHours),
         isCrammer: isCramming,
         examFear: Number(fearScore),
+        currentMood: moodText.trim(),
       })
-
-      if (quote.trim()) {
-        try {
-          await createUniversityVibe(detail.id, quote.trim())
-        } catch (requestError) {
-          setQuoteError('기여는 저장됐지만 오늘의 한마디 등록은 실패했어요.')
-        }
-      }
 
       markContributed(detail.id)
       setStoredSchool({ id: detail.id, name: detail.schoolName })
@@ -215,13 +208,13 @@ export default function ContributionPage() {
                 </div>
 
                 <div className="field-card">
-                  <p className="field-card__label">오늘의 한마디</p>
+                  <p className="field-card__label">분위기 한 줄</p>
                   <textarea
                     className="text-pill"
                     rows="2"
                     maxLength="50"
-                    value={quote}
-                    onChange={(event) => setQuote(event.target.value)}
+                    value={moodText}
+                    onChange={(event) => setMoodText(event.target.value)}
                     disabled={!detail || isSubmitting}
                   />
                 </div>

@@ -232,6 +232,8 @@ button {
 }
 
 .suggestion-item {
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 14px 18px;
   background: transparent;
@@ -239,6 +241,25 @@ button {
   font-size: 0.98rem;
   font-weight: 700;
   text-align: left;
+}
+
+.school-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.school-logo {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.school-logo--sm {
+  width: 20px;
+  height: 20px;
 }
 
 .suggestion-item:hover {

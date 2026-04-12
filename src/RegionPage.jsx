@@ -6,6 +6,8 @@ import {
   getStoredSchoolId,
 } from './appData'
 import { getUniversitiesByProvince } from './services/api'
+import iconImage from './assets/icon.png'
+import { getSchoolLogoSrc } from './schoolLogoMap'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
 
 export default function RegionPage() {
@@ -75,7 +77,10 @@ export default function RegionPage() {
                         className="region-school-button"
                         onClick={() => openSchool(school)}
                       >
-                        <span>{school.name}</span>
+                        <span className="school-option">
+                          <img src={getSchoolLogoSrc(school.name) || iconImage} alt="" className="school-logo" />
+                          <span>{school.name}</span>
+                        </span>
                       </button>
                     ))}
                     {isLoading && <div className="region-empty">학교 목록을 불러오는 중이에요...</div>}

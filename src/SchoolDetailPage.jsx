@@ -1,13 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import iconImage from './assets/icon.png'
-import {
-  deriveMood,
-  getStoredSchoolId,
-  getStoredSchool,
-  hasContributed,
-} from './appData'
+import { getStoredSchoolId, getStoredSchool, hasContributed } from './appData'
 import { createUniversityVibe, getUniversityById, getUniversityStats, getUniversityVibes } from './services/api'
+import { getSchoolLogoSrc } from './schoolLogoMap'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
 
 export default function SchoolDetailPage() {
@@ -48,13 +44,13 @@ export default function SchoolDetailPage() {
           id: university.id,
           schoolName: university.name,
           province: university.province,
+          currentMood: university.currentMood || '',
           participants: Number(stats.contributionCount ?? 0),
           progress: Number(stats.avgProgress ?? 0),
           sleepHours: Number(stats.avgSleepHours ?? 0),
           cramCount: Number(stats.crammerCount ?? 0),
           fearScore: Number(stats.avgExamFear ?? 0),
           doomScore: Number(stats.doomScore ?? 0),
-          mood: deriveMood(Number(stats.avgExamFear ?? 0)),
         }
 
         setDetail(normalizedDetail)
@@ -113,7 +109,7 @@ export default function SchoolDetailPage() {
 
     try {
       const created = await createUniversityVibe(detail.id, nextText)
-      setVibes((current) => [created, ...current].slice(0, 5))
+      setVibes((current) => [created, ...current].slice(0, 3))
       setVibeText('')
     } catch (requestError) {
       setVibeError(requestError.message)
@@ -124,6 +120,8 @@ export default function SchoolDetailPage() {
 
   const canContribute = Boolean(detail && myUniversityId === detail.id)
   const isContributionDisabled = !detail || hasContributed(detail.id)
+  const currentMoodText = detail?.currentMood || '아직 등록된 분위기가 없어요.'
+  const schoolLogoSrc = getSchoolLogoSrc(detail?.schoolName) || iconImage
 
   return (
     <div className="screen">
@@ -143,13 +141,13 @@ export default function SchoolDetailPage() {
 
               <div className="detail-hero">
                 <div className="detail-hero__badge">
-                  <img src={iconImage} alt="" />
+                  <img src={schoolLogoSrc} alt="" />
                 </div>
               </div>
 
               <div className="detail-mood">
                 <span>실시간 분위기</span>
-                <span>{`"${detail?.mood || '집계 중'}"`}</span>
+                <span>{`"${currentMoodText}"`}</span>
               </div>
 
               {detail && (
@@ -207,7 +205,7 @@ export default function SchoolDetailPage() {
               <div className="field-card">
                 <p className="field-card__label">최근 한마디</p>
                 <div className="vibe-list">
-                  {vibes.slice(0, 5).map((vibe) => (
+                  {vibes.slice(0, 3).map((vibe) => (
                     <div key={vibe.id} className="vibe-item">
                       {vibe.text}
                     </div>

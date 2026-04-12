@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { DEFAULT_SCHOOL_NAME, getStoredSchool } from './appData'
 import { searchUniversities } from './services/api'
+import iconImage from './assets/icon.png'
+import { getSchoolLogoSrc } from './schoolLogoMap'
 import { LogoHeader } from './uiParts'
 
 const MAX_UNIVERSITY_OPTIONS = 80
@@ -115,7 +117,10 @@ export default function StartPage() {
                       className="suggestion-item"
                       onMouseDown={() => handleSelect(school)}
                     >
-                      {school.name}
+                      <span className="school-option">
+                        <img src={getSchoolLogoSrc(school.name) || iconImage} alt="" className="school-logo" />
+                        <span>{school.name}</span>
+                      </span>
                     </button>
                   ))}
                 </div>
