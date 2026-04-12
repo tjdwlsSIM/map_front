@@ -62,7 +62,7 @@ export default function RegionPage() {
           <LogoHeader compact />
 
           <main className="page-main">
-            <p className="page-copy">실시간으로 전국 대학교의 망함 현황을 <br />확인해보세요</p>
+            <p className="page-copy">실시간으로 전국 대학교의 망함 현황을<br />확인해보세요</p>
 
             <section className="region-stage">
               <div className="region-card stack stack--md">
