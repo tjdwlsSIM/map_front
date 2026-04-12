@@ -39,9 +39,9 @@ export default function ConfirmationPage() {
             <p className="confirm-card__title">선택한 학교를 마지막으로 확인해주세요.</p>
             <div className="confirm-card__school">{schoolName}</div>
             <div className="confirm-card__warning">
-              소속 대학교 명은 다시 바꿀 수 없습니다!
+              소속 대학교는 다시 바꿀 수 없습니다!
               <br />
-              피그마 확인 화면처럼 한 번 더 점검해 주세요.
+              한 번 더 확인해 주세요.
             </div>
 
             <div className="confirm-card__actions">
