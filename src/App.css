@@ -223,7 +223,7 @@ button {
   right: 0;
   left: 0;
   z-index: 5;
-  max-height: 260px;
+  max-height: min(420px, 46svh);
   overflow-y: auto;
   padding: 8px 0;
   border-radius: 18px;
@@ -644,10 +644,6 @@ button {
   font-size: 1.15rem;
   font-weight: 900;
   text-align: left;
-}
-
-.region-school-button__rank {
-  color: var(--color-brand);
 }
 
 .detail-stats {

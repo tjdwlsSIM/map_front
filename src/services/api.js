@@ -79,22 +79,22 @@ export async function contributeToUniversity(universityId, payload) {
   }
 
   try {
-    return await request('/universities/contribute', {
+    return await request(`/universities/${universityId}/contribute`, {
       method: 'POST',
-      body: JSON.stringify(normalizedPayload),
+      body: JSON.stringify(payload),
     })
   } catch (error) {
     const canRetryWithPathParam =
       error instanceof Error &&
-      (error.message.includes('(404)') || error.message.includes('Not Found'))
+      (error.message.includes('(404)') || error.message.includes('Not Found') || error.message.includes('(405)'))
 
     if (!canRetryWithPathParam) {
       throw error
     }
 
-    return request(`/universities/${universityId}/contribute`, {
+    return request('/universities/contribute', {
       method: 'POST',
-      body: JSON.stringify(payload),
+      body: JSON.stringify(normalizedPayload),
     })
   }
 }

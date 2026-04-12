@@ -68,7 +68,7 @@ export default function RegionPage() {
 
                 <div className="region-preview">
                   <div className="region-school-list">
-                    {schools.map((school, index) => (
+                    {schools.map((school) => (
                       <button
                         key={school.id}
                         type="button"
@@ -76,7 +76,6 @@ export default function RegionPage() {
                         onClick={() => openSchool(school)}
                       >
                         <span>{school.name}</span>
-                        <span className="region-school-button__rank">{index + 1}</span>
                       </button>
                     ))}
                     {isLoading && <div className="region-empty">학교 목록을 불러오는 중이에요...</div>}

@@ -4,68 +4,76 @@ const MY_UNIVERSITY_NAME_KEY = 'myUniversityName'
 
 export const regionMarkers = [
   {
-    id: 'seoul',
-    name: '서울',
-    displayName: '서울특별시',
-    provinceQuery: '서울',
-    top: '24%',
-    left: '38%',
-  },
-  {
     id: 'gyeonggi',
-    name: '경기',
+    name: '경기도',
     displayName: '경기도',
     provinceQuery: '경기',
-    top: '31%',
-    left: '30%',
+    top: '23%',
+    left: '42%',
   },
   {
     id: 'gangwon',
-    name: '강원',
-    displayName: '강원특별자치도',
+    name: '강원도',
+    displayName: '강원도',
     provinceQuery: '강원',
-    top: '23%',
-    left: '68%',
+    top: '17%',
+    left: '64%',
   },
   {
-    id: 'chungcheong',
-    name: '충청',
-    displayName: '충청권',
+    id: 'chungbuk',
+    name: '충청북도',
+    displayName: '충청북도',
     provinceQuery: '충청',
-    top: '42%',
-    left: '44%',
+    top: '32%',
+    left: '52%',
   },
   {
-    id: 'jeolla',
-    name: '전라',
-    displayName: '전북특별자치도',
-    provinceQuery: '전북',
-    top: '58%',
+    id: 'chungnam',
+    name: '충청남도',
+    displayName: '충청남도',
+    provinceQuery: '충청',
+    top: '41%',
+    left: '30%',
+  },
+  {
+    id: 'gyeongbuk',
+    name: '경상북도',
+    displayName: '경상북도',
+    provinceQuery: '경상',
+    top: '42%',
+    left: '76%',
+  },
+  {
+    id: 'jeonbuk',
+    name: '전라북도',
+    displayName: '전라북도',
+    provinceQuery: '전라',
+    top: '56%',
+    left: '40%',
+  },
+  {
+    id: 'gyeongnam',
+    name: '경상남도',
+    displayName: '경상남도',
+    provinceQuery: '경상',
+    top: '61%',
+    left: '63%',
+  },
+  {
+    id: 'jeonnam',
+    name: '전라남도',
+    displayName: '전라남도',
+    provinceQuery: '전라',
+    top: '71%',
     left: '28%',
   },
   {
-    id: 'gyeongsang',
-    name: '경상',
-    displayName: '경상권',
-    provinceQuery: '경상',
-    top: '45%',
-    left: '74%',
-  },
-  {
-    id: 'south',
-    name: '남해안',
-    displayName: '남해안 권역',
-    provinceQuery: '경상',
-    top: '66%',
-    left: '57%',
-  },
-  {
     id: 'jeju',
-    name: '제주',
+    name: '제주특별자치도',
     displayName: '제주특별자치도',
     provinceQuery: '제주',
-    top: '85%',
-    left: '20%',
+    top: '90%',
+    left: '22%',
   },
 ]
 
@@ -138,11 +146,11 @@ export function deriveMood(fearScore) {
 
 export function getRegionByProvince(province) {
   if (!province) {
-    return getRegionById('chungcheong')
+    return getRegionById('chungbuk')
   }
 
   return (
     regionMarkers.find((region) => province.includes(region.provinceQuery) || region.displayName.includes(province)) ||
-    getRegionById('chungcheong')
+    getRegionById('chungbuk')
   )
 }

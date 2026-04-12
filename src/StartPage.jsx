@@ -4,6 +4,8 @@ import { DEFAULT_SCHOOL_NAME, getStoredSchool } from './appData'
 import { searchUniversities } from './services/api'
 import { LogoHeader } from './uiParts'
 
+const MAX_UNIVERSITY_OPTIONS = 80
+
 export default function StartPage() {
   const navigate = useNavigate()
   const location = useLocation()
@@ -31,7 +33,7 @@ export default function StartPage() {
   useEffect(() => {
     const keyword = university.trim()
 
-    if (!isFocused || keyword.length < 1) {
+    if (!isFocused) {
       setSuggestions(selectedUniversity && keyword === selectedUniversity.name ? [selectedUniversity] : [])
       return
     }
@@ -44,7 +46,7 @@ export default function StartPage() {
       try {
         const results = await searchUniversities(keyword)
         if (isMounted) {
-          setSuggestions(results.slice(0, 8))
+          setSuggestions(results.slice(0, MAX_UNIVERSITY_OPTIONS))
         }
       } catch (requestError) {
         if (isMounted) {
@@ -92,7 +94,7 @@ export default function StartPage() {
               <input
                 type="text"
                 className="selection-card__input"
-                placeholder="소속"
+                placeholder="Ex) OO대"
                 value={university}
                 onChange={(event) => {
                   setUniversity(event.target.value)
