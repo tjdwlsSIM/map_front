@@ -53,7 +53,7 @@ export default function MainPage() {
           <LogoHeader compact />
 
           <main className="page-main">
-            <p className="page-copy">실시간으로 전국 대학교의 망함 현황을 확인해보세요</p>
+            <p className="page-copy">실시간으로 전국 대학교의 망함 현황을<br />확인해보세요</p>
 
             <section className="map-stage">
               <img src={mapImage} alt="전국 지도" className="map-stage__image" />
