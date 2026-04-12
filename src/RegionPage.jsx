@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {
   getRegionById,
   getStoredSchool,
-  setStoredSchool,
+  getStoredSchoolId,
 } from './appData'
 import { getUniversitiesByProvince } from './services/api'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
@@ -13,6 +13,7 @@ export default function RegionPage() {
   const { regionId = 'chungcheong' } = useParams()
   const region = getRegionById(regionId)
   const selectedSchool = getStoredSchool()
+  const selectedSchoolId = getStoredSchoolId()
   const [schools, setSchools] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
@@ -49,7 +50,6 @@ export default function RegionPage() {
   }, [region.provinceQuery])
 
   const openSchool = (school) => {
-    setStoredSchool(school)
     navigate(`/school/${school.id}`)
   }
 
@@ -98,7 +98,11 @@ export default function RegionPage() {
 
           <FooterSchoolButton
             schoolName={selectedSchool}
-            onClick={() => openSchool(selectedSchool)}
+            onClick={() => {
+              if (selectedSchoolId) {
+                openSchool({ id: selectedSchoolId })
+              }
+            }}
           />
         </div>
       </div>

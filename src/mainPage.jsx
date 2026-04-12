@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import iconImage from './assets/icon.png'
 import mapImage from './assets/map.png'
-import { getStoredSchool, getStoredSchoolId, regionMarkers, setStoredSchool } from './appData'
+import { getStoredSchool, getStoredSchoolId, regionMarkers } from './appData'
 import { getDoomRanking } from './services/api'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
 
@@ -18,7 +18,6 @@ export default function MainPage() {
   }
 
   const handleSchoolClick = (university) => {
-    setStoredSchool(university)
     navigate(`/school/${university.id}`)
   }
 

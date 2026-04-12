@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { DEFAULT_SCHOOL_NAME, getStoredSchool, setStoredSchool } from './appData'
+import { DEFAULT_SCHOOL_NAME, getStoredSchool } from './appData'
 import { searchUniversities } from './services/api'
 import { LogoHeader } from './uiParts'
 
@@ -76,7 +76,6 @@ export default function StartPage() {
       return
     }
 
-    setStoredSchool(selectedUniversity)
     navigate('/confirm', { state: { school: selectedUniversity, schoolName: selectedUniversity.name } })
   }
 

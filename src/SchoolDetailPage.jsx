@@ -6,7 +6,6 @@ import {
   getStoredSchoolId,
   getStoredSchool,
   hasContributed,
-  setStoredSchool,
 } from './appData'
 import { createUniversityVibe, getUniversityById, getUniversityStats, getUniversityVibes } from './services/api'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
@@ -60,7 +59,6 @@ export default function SchoolDetailPage() {
 
         setDetail(normalizedDetail)
         setVibes([])
-        setStoredSchool({ id: university.id, name: university.name })
 
         try {
           const vibeList = await getUniversityVibes(parsedUniversityId)
@@ -95,18 +93,12 @@ export default function SchoolDetailPage() {
     }
   }, [parsedUniversityId])
 
-  const openSchool = (school) => {
-    if (!school) {
+  const openMySchool = () => {
+    if (!myUniversityId) {
       return
     }
 
-    if (typeof school === 'string') {
-      setStoredSchool(school)
-      return
-    }
-
-    setStoredSchool(school)
-    navigate(`/school/${school.id}`)
+    navigate(`/school/${myUniversityId}`)
   }
 
   const handleCreateVibe = async () => {
@@ -246,7 +238,7 @@ export default function SchoolDetailPage() {
             </section>
           </main>
 
-          <FooterSchoolButton schoolName={selectedSchool} onClick={() => openSchool(detail)} />
+          <FooterSchoolButton schoolName={selectedSchool} onClick={openMySchool} />
         </div>
       </div>
     </div>

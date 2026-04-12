@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getStoredSchool, markContributed, setStoredSchool } from './appData'
+import { getStoredSchool, getStoredSchoolId, markContributed, setStoredSchool } from './appData'
 import { contributeToUniversity, createUniversityVibe, getUniversityById, getUniversityStats } from './services/api'
 import { FooterSchoolButton, LogoHeader } from './uiParts'
 
@@ -9,6 +9,7 @@ export default function ContributionPage() {
   const { universityId = '' } = useParams()
   const parsedUniversityId = Number(universityId)
   const selectedSchool = getStoredSchool()
+  const selectedSchoolId = getStoredSchoolId()
   const [detail, setDetail] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -48,7 +49,6 @@ export default function ContributionPage() {
         }
 
         setDetail(nextDetail)
-        setStoredSchool({ id: university.id, name: university.name })
         setProgress(nextDetail.progress)
         setSleepHours(nextDetail.sleepHours)
         setIsCramming(nextDetail.cramCount > 0)
@@ -117,9 +117,8 @@ export default function ContributionPage() {
   }
 
   const openSchool = () => {
-    if (detail) {
-      setStoredSchool({ id: detail.id, name: detail.schoolName })
-      navigate(`/school/${detail.id}`)
+    if (selectedSchoolId) {
+      navigate(`/school/${selectedSchoolId}`)
     }
   }
 
