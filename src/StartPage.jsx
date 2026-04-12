@@ -128,9 +128,9 @@ export default function StartPage() {
             </div>
 
             <p className="selection-card__guide">
-              검색 목록에서 학교를 고르면
+              검색 목록에서 학교를 선택하면
               <br />
-              피그마 흐름처럼 다음 단계로 이동할 수 있어요.
+              다음 단계로 이동할 수 있어요.
             </p>
 
             {selectedUniversity && (
