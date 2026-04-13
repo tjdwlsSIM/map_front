@@ -4,6 +4,14 @@ const MY_UNIVERSITY_NAME_KEY = 'myUniversityName'
 
 export const regionMarkers = [
   {
+    id: 'seoul',
+    name: '서울',
+    displayName: '서울특별시',
+    provinceQuery: '서울',
+    top: '16%',
+    left: '35%',
+  },
+  {
     id: 'gyeonggi',
     name: '경기도',
     displayName: '경기도',
