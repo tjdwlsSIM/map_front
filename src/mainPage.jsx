@@ -63,7 +63,31 @@ export default function MainPage() {
                   key={region.id}
                   type="button"
                   className="map-marker"
-                  style={{ top: region.top, left: region.left }}
+                  style={{
+                    top:
+                      region.name === "서울"
+                      ? "21%"
+                    : region.name === "경기도"
+                      ? "26%"
+                    : region.name === "충청북도"
+                      ? "34%"
+                    : region.name === "충청남도"
+                      ? "40%"
+                    : region.name === "전라남도"
+                      ? "67%"
+                    : region.name === "전라북도"
+                      ? "53%"
+                    : region.top,
+                    left:
+                      region.name === "서울"
+                      ? "37%"
+                    : region.name === "경기도"
+                      ? "45%"
+                    : region.name === "충청남도"
+                      ? "34%"
+                    : region.name === "전라남도"
+                      ? "36%"
+                    : region.left, }}
                   onClick={() => handleRegionClick(region.id)}
                   aria-label={`${region.name} 지역 보기`}
                 >
