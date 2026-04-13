@@ -1,11 +1,16 @@
+import brandFlag from './assets/brand-flag.png'
+
 export function LogoHeader({ compact = false }) {
   return (
     <header className={`brand-header ${compact ? 'brand-header--compact' : 'brand-header--hero'}`}>
-      <h1 className="brand-logo">망한지도</h1>
-      <div className="brand-dots" aria-label="page indicator">
-        <span className="brand-dot brand-dot--active"></span>
-        <span className="brand-dot"></span>
-        <span className="brand-dot"></span>
+      {!compact && <img src={brandFlag} alt="" className="brand-mark" aria-hidden="true" />}
+      <div className="brand-title-row">
+        <h1 className="brand-logo">망한지도</h1>
+        <div className="brand-dots" aria-label="page indicator">
+          <span className="brand-dot brand-dot--active"></span>
+          <span className="brand-dot"></span>
+          <span className="brand-dot"></span>
+        </div>
       </div>
     </header>
   )

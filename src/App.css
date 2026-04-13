@@ -79,12 +79,27 @@ button {
 }
 
 .brand-header--hero {
+  flex-direction: column;
   padding: 112px 24px 0;
+  gap: 18px;
 }
 
 .brand-header--compact {
   padding: 18px 24px 18px;
   background: var(--color-brand);
+}
+
+.brand-mark {
+  width: clamp(62px, 18vw, 84px);
+  height: auto;
+  display: block;
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 }
 
 .brand-logo {
@@ -100,6 +115,10 @@ button {
   display: flex;
   gap: 8px;
   transform: translateY(4px);
+}
+
+.brand-header--hero .brand-dots {
+  transform: translateY(2px);
 }
 
 .brand-dot {

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { DEFAULT_SCHOOL_NAME, getStoredSchool } from './appData'
 import { searchUniversities } from './services/api'
 import iconImage from './assets/icon.png'
 import { getSchoolLogoSrc } from './schoolLogoMap'
@@ -11,7 +10,7 @@ const MAX_UNIVERSITY_OPTIONS = 80
 export default function StartPage() {
   const navigate = useNavigate()
   const location = useLocation()
-  const storedSchool = location.state?.schoolName || getStoredSchool() || DEFAULT_SCHOOL_NAME
+  const storedSchool = location.state?.schoolName || ''
 
   const [university, setUniversity] = useState(storedSchool)
   const [selectedUniversity, setSelectedUniversity] = useState(location.state?.school || null)
